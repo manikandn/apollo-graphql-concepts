@@ -4,6 +4,7 @@
     "start:dev:backend-services-user": "nodemon backend-services/users/index.js",
     "start:dev:backend-services-order": "nodemon backend-services/orders/index.js",
     "start:dev:backend-services-product": "nodemon backend-services/products/index.js",
+    "start:dev:backend-services-payment": "nodemon backend-services/payments/index.js",
     "start:backends": "concurrently \"npm:start:backend-services-*\"",
     "start:dev:gateway": "nodemon index.js",
     "start:gateway": "node index.js"

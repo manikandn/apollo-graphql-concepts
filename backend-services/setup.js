@@ -1,9 +1,11 @@
 require("./users/src/config/db");
 require("./orders/src/config/db");
 require("./products/src/config/db");
+require("./payments/src/config/db");
 const User = require("./users/src/models/user");
 const Order = require("./orders/src/models/order");
 const Product = require("./products/src/models/product");
+const Payment = require("./payments/src/models/payment");
 
 main();
 
@@ -195,6 +197,20 @@ async function main() {
     },
   ];
 
-  await Order.insertMany(user1Orders);
-  await Order.insertMany(user2Orders);
+  let orders = await Order.insertMany([...user1Orders, ...user2Orders]);
+
+  const paymentsData = orders.map((_o) => {
+    return {
+      orderId: _o._id,
+      userId: _o.userId,
+    };
+  });
+
+  const payments = await Payment.insertMany(paymentsData);
+
+  for (const _p of payments) {
+    await Order.updateOne({ _id: _p.orderId }, { paymentId: _p._id });
+  }
+
+  process.exit();
 }

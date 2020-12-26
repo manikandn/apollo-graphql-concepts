@@ -13,6 +13,9 @@ module.exports = {
   },
   Mutation: {},
   Order: {
+    async __resolveReference(object) {
+      return await Order.findOne({ _id: object.id });
+    },
     user(order) {
       return { __typename: "User", id: order.userId };
     },
@@ -22,10 +25,18 @@ module.exports = {
     shipmentAddress(order) {
       return { __typename: "UserAddress", id: order.shipmentAddressId };
     },
+    payment(order) {
+      return { __typename: "Payment", id: order.paymentId };
+    },
   },
   OrderCart: {
     product(cart) {
       return { __typename: "Product", id: cart.productId };
+    },
+  },
+  User: {
+    async orders(user) {
+      return await Order.find({ userId: user.id });
     },
   },
 };

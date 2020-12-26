@@ -19,6 +19,7 @@ const gateway = new ApolloGateway({
     { name: "users", url: "http://localhost:3011/graphql" },
     { name: "orders", url: "http://localhost:3012/graphql" },
     { name: "products", url: "http://localhost:3013/graphql" },
+    { name: "payments", url: "http://localhost:3014/graphql" },
   ],
   buildService: ({ url }) => new GatewayIntruder({ url }),
 

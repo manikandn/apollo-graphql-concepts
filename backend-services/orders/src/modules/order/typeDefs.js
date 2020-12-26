@@ -11,6 +11,7 @@ module.exports = gql`
     cart: [OrderCart]
     billingAddress: UserAddress
     shipmentAddress: UserAddress
+    payment: Payment
   }
 
   type OrderCart {
@@ -24,8 +25,12 @@ module.exports = gql`
   }
   extend type User @key(fields: "id") {
     id: ID @external
+    orders: [Order]
   }
   extend type UserAddress @key(fields: "id") {
+    id: ID @external
+  }
+  extend type Payment @key(fields: "id") {
     id: ID @external
   }
 `;
