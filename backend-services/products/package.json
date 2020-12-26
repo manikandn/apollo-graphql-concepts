@@ -1,0 +1,13 @@
+{
+  "name": "library",
+  "scripts": {},
+  "dependencies": {
+    "@apollo/gateway": "^0.21.4",
+    "apollo-server": "^2.19.1",
+    "dotenv": "^8.2.0",
+    "graphql": "^15.4.0",
+    "graphql-type-json": "^0.3.2",
+    "lodash": "^4.17.20",
+    "mongoose": "^5.9.26"
+  }
+}
